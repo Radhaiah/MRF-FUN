@@ -1,0 +1,81 @@
+Get all the countries from Asia continent /region using Filter function
+
+var xhr=new XMLHttpRequest();
+xhr.open("GET","https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.onload=function() {
+    if(xhr.status>=200 && xhr.status<=300)
+    {
+        let country1 =JSON.parse(this.response);// assigning the json data of api link to country1
+        console.log(country1);//checking while data is present or not in country1
+        let city =country1.filter(function(country1){
+            
+              if(country1.region==="Asia")//checking condition wheter the region is Asia or not
+                    return country1.name;//returning the output while the condition is true
+                
+            
+        });console.log(city);printing the output on console window 
+    }
+}
+xhr.send();
+
+Get all the countries with a population of less than 2 lakhs using Filter function
+
+var xhr=new XMLHttpRequest();
+xhr.open("GET","https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.onload=function() {
+    if(xhr.status>=200 && xhr.status<=300)
+    {
+        let country1 =JSON.parse(this.response);
+        console.log(country1);//checking whether the api data is in country1 or not
+	//assigning filter function to city andfiltering the country names which is having population is higher than 200000
+        let city =country1.filter(function(country1){
+            
+              if(country1.population<200000)//checking the condition
+                    return country1.name;returning the value of city to print in console.log
+                
+            
+        });console.log(city);
+    }
+}
+xhr.send();
+
+Print the following details name, capital, flag using forEach function
+
+var xhr=new XMLHttpRequest();
+xhr.open("GET","https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.onload=function() {
+    if(xhr.status>=200 && xhr.status<=300)
+    {
+        let country1 =JSON.parse(this.response);
+        console.log(country1);//checking whether the api data is in country1 or not
+//applying for each loop to print country name,capital,flag
+           country1.forEach((country1)=>{
+            console.log(`${country1.name}
+            ${country1.capital}
+            ${country1.flag}`); 
+            
+        });
+    }
+}
+xhr.send();
+
+Print the country which uses US Dollars as currency.
+
+var xhr=new XMLHttpRequest(); 
+xhr.open("GET","https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+ xhr.onload=function() 
+ {if(xhr.status>=200 && xhr.status<=300){
+   let country1 =JSON.parse(this.response);
+   console.log(country1);//checking whether the api data is in country1 or not
+   //calling filter function to filter county names which uses currency as us dollers
+   let city =country1.filter(function(country1){
+     let data=country1.currencies;//pusing currencies of array data ti data variable
+     for(var i of data)//taking every element from data variable to check each and every element in array
+     {
+       if(i.code==="USD")//condition for checking  whether the currenciesis doller or not
+       console.log(country1.name);//printing the data
+     }
+   });(country1);
+  
+}}
+xhr.send();
